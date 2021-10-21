@@ -26,7 +26,7 @@ function criarCobra() {
 }
 
 function drawFood() {
-    context.fillStyle = "orange";
+    context.fillStyle = "red";
     context.fillRect(food.x, food.y, box, box);
 
 }
@@ -58,7 +58,12 @@ function iniciarJogo() {
     if (direction == "up") snakeY -= box;
     if (direction == 'down') snakeY += box;
 
-    snake.pop();
+    if (snakeX != food.x || snakeY != food.y) {
+        snake.pop();
+    } else {
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
 
     let newHead = {
         x: snakeX,
